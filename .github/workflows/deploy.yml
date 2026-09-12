@@ -71,9 +71,9 @@ jobs:
             IMAGE_VERSION=${BRANCH_NAME}
           fi
 
-          # Set platforms: amd64 only for non-master branches, all platforms for master and tags
+          # Feature branches: amd64 + Pi (arm64 / armv7). Master and tags: full matrix.
           if [[ ${BRANCH_NAME} != "master" && ${IS_TAG} == "false" ]]; then
-            BUILD_PLATFORMS="linux/amd64"
+            BUILD_PLATFORMS="linux/amd64,linux/arm64,linux/arm/v7"
           else
             BUILD_PLATFORMS="${{ env.PLATFORMS }}"
           fi
